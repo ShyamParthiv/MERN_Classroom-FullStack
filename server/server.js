@@ -1,12 +1,14 @@
+require('dotenv').config()
 import config from './../config/config'
 import app from './express'
 import mongoose from 'mongoose'
 
 // Connection URL
 mongoose.Promise = global.Promise
-mongoose.connect(config.mongoUri)
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`)
+mongoose.connect(config.mongoUri, { family: 4 })
+mongoose.connection.on('error', (err) => {
+  console.error(`unable to connect to database: ${config.mongoUri}\nDetailed Error:`, err);
+  throw new Error(`unable to connect to database: ${config.mongoUri}`);
 })
 
 app.listen(config.port, (err) => {
