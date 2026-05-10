@@ -20,7 +20,7 @@
   "scripts": {
     "development": "nodemon",
     "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
-    "start": "NODE_ENV=production node ./dist/server.generated.js"
+    "start": "node -e \"process.env.NODE_ENV='production'; require('./dist/server.generated.js')\""
   },
   "engines": {
     "node": ">=24.13.0",
@@ -34,7 +34,7 @@
     "file-loader": "6.0.0",
     "nodemon": "^2.0.22",
     "webpack": "^5.105.2",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "^7.4.5",
     "webpack-hot-middleware": "^2.26.1",
     "webpack-node-externals": "1.7.2"
@@ -47,6 +47,7 @@
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "cors": "2.8.5",
+    "dotenv": "^17.3.1",
     "express": "^4.22.1",
     "express-jwt": "^8.5.1",
     "formidable": "1.2.2",
